@@ -1,0 +1,202 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.atividadepraticajava02;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+/**
+ *
+ * @author priscyla.leffler
+ */
+public class Principal {
+    
+    public static void main(String[] args) {
+        
+        Conta c = null;
+        Scanner scan = new Scanner (System.in);
+        
+        int opcao, selecaoConta, contador_numero_conta = 0, numero;
+        double saldo, limite;
+        String nome_titular;
+        
+      System.out.println("*** Banco Online ***\n");
+        
+        System.out.println("""
+            *** Menu de Selecao ***
+                           
+              Informe a opcao desejada abaixo:
+                           
+                
+              \n1 - Criar conta
+              \n2 - Visualizar saldo
+              \n3 - Sacar
+              \n4 - Depositar          
+              \n5 - Sair
+        """);
+        
+        opcao = scan.nextInt();
+        
+       /* while (opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4){
+            boolean respostaBusca = false;
+            Iterator i = lista.iterator();*/
+            
+            switch (opcao){
+                case 1:
+                    
+                    System.out.println("""
+                                       Informe o tipo de conta que deseja criar:
+                                       
+                                       \n1 - Conta Comum.
+                                       \n2 - Conta Especial
+                                       \n3 - Conta Poupanca.
+                                       """);
+                    selecaoConta = scan.nextInt();
+                    
+                    switch (selecaoConta){
+                        case 1:
+                            System.out.println("Informe o nome do titular da conta: ");
+                            nome_titular = scan.next();
+                            
+                            contador_numero_conta++;
+                            numero = contador_numero_conta;
+                            
+                            c = new Conta(numero, nome_titular);
+                            break;
+                        case 2:
+                            System.out.println("Informe o nome do titular da conta: ");
+                            nome_titular = scan.next();
+                            
+                            System.out.println("Informe o saldo da conta: ");
+                            saldo = scan.nextDouble();
+                            
+                            System.out.println("Informe o limite da conta: ");
+                            limite = scan.nextDouble();
+                            
+                            contador_numero_conta++;
+                            numero = contador_numero_conta;
+                            
+                            c = new ContaEspecial(numero, nome_titular, saldo, limite);
+                            break;
+                        case 3:
+                            System.out.println("Informe o nome do titular da conta: ");
+                            nome_titular = scan.next();
+                            
+                            contador_numero_conta++;
+                            numero = contador_numero_conta;
+                            
+                            c = new ContaPoupanca(numero, nome_titular);
+                            break;
+                    
+                            
+                    }
+                    
+                        /*c = new Conta();
+                        System.out.println("\nInforme o nome do(a) titular da conta: ");
+                        c.nome_titular = scan.next();
+
+                        System.out.println("\nInforme o saldo atual da conta:  ");
+                        c.saldo = scan.nextDouble();
+                        
+                        contadorNumeroConta++;
+                        c.numero = contadorNumeroConta;
+                        System.out.println("\nO numero da sua conta e: " + c.numero);
+
+                        lista.add(c); */
+
+                        break;
+                case 2:
+                        System.out.println("\nInforme o numero da conta: ");
+                        numeroConsulta = scan.nextInt();
+
+                        while(i.hasNext()){
+                            c=(Conta)i.next();
+                            
+                            if (c.numero == numeroConsulta){
+                                System.out.println("\nO saldo da conta e: "+c.saldo);
+                                
+                                respostaBusca = true;
+                                break;
+                            }
+                        }
+                        if(!respostaBusca){
+                            System.out.println("Numero da conta esta incorreto!");
+                        }
+                        break;
+                case 3:
+                        System.out.println("\nInforme o numero da conta: ");
+                        numeroConsulta = scan.nextInt();
+
+                        while(i.hasNext()){
+                            c=(Conta)i.next();
+                            
+                            if (c.numero == numeroConsulta){
+                                System.out.println("Informe o valor que deseja sacar  : ");
+                                valor = scan.nextDouble();
+                                resposta = c.sacar(valor);
+                                respostaBusca = true;
+                                if(resposta){
+                                    System.out.println("Saque realizado com sucesso!");
+                                    System.out.println("\nO saldo atual da conta e: \n" + c.saldo);
+                                }
+                                else{
+                                    System.out.println("Nao foi possivel realizar o saque.");
+                                    System.out.println("\nO saldo atual da conta permanece: \n" + c.saldo);
+                    }
+                    break;
+                            }
+                        }
+                        if(!respostaBusca){
+                            System.out.println("Numero da conta esta incorreto!");
+                        }
+                        
+                        break;
+                case 4:
+                       System.out.println("Informe o numero da conta: ");
+                       numeroConsulta = scan.nextInt();
+                       
+                       while(i.hasNext()){
+                            c=(Conta)i.next();
+                            if (c.numero == numeroConsulta){
+                                System.out.println("Informe o valor que deseja depositar na conta: ");
+                                valor = scan.nextDouble();
+                                c.depositar(valor);
+                                System.out.println("\nO saldo atual da conta e: " + c.saldo);
+                                respostaBusca = true;
+                                break;
+                            }
+                       }
+                       if(!respostaBusca){
+                            System.out.println("Numero da conta esta incorreto!");
+                        }
+                        break;
+                default:
+                        break;
+            }
+            System.out.println("""
+            *** Menu de Selecao ***
+                           
+              Informe a opcao desejada abaixo:
+                           
+                
+                \n1 - Criar conta
+                \n2 - Visualizar saldo
+                \n3 - Sacar
+                \n4 - Depositar
+                \n5 - Sair
+                        
+                           """);
+            opcao = scan.nextInt();
+        }
+        
+        /*System.out.println("Informe o numero da conta: ");
+        c.numero = scan.nextInt();
+        
+        System.out.println("\nInforme o nome do(a) titular da conta: ");
+        c.nome_titular = scan.next(); */
+    }
+    
+   
